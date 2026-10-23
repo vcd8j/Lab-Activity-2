@@ -1,20 +1,39 @@
-public static void main(String[] args) {
+public class Main {
 
-        Vehicle vehicle1 = new Vehicle("Toyota", "Fortuner", 2020);
-        vehicle1.displayInfo();
-        System.out.println("Age: " + vehicle1.calculateAge());
-        System.out.println("Vintage: " + vehicle1.isVintage());
-        vehicle1.setYear(2020);
+    public static void printDetails(Vehicle vehicle) {
+        vehicle.displayInfo();
+    }
+    public static void main(String[] args) {
+        // DEMO 1: A parent reference can refer to a child object.
+        System.out.println("=== 1. Parent Reference ===");
+        Vehicle vehicle = new Car ("Tesla", "Roadster", 2026, 4);
+        vehicle.displayInfo();
+        System.out.println();
 
-        Vehicle vehicle2 = new Vehicle("Nissan", "Navara", 2023 );
-        vehicle2.displayInfo();
-        System.out.println("Age: " + vehicle2.calculateAge());
-        System.out.println("Vintage: " + vehicle2.isVintage());
-        vehicle2.setYear(2023);
+        // The Same Variable now Refer to a Motorcycle Object.
+        vehicle = new Motorcycle("KTM", "Duke 200", 2024, "4-stroke, DOHC, single-cylinder");
+        vehicle.displayInfo();
 
-        Vehicle vehicle3 = new Vehicle("Honda", "Civic", 2010);
-        vehicle3.displayInfo();
-        System.out.println("Age: " + vehicle3.calculateAge());
-        System.out.println("Vintage: " + vehicle3.isVintage());
-        vehicle3.setYear(2023);
-    }   
+        // DEMO 2: One Method accepts different Vehicle subclasses
+        System.out.println("\n === 2. Method Parameter ===");
+        Car car = new Car ("Tesla", "Model 3", 2022, 4);
+        Motorcycle motorcycle = new Motorcycle("Honda", "Beat", 2023, "4-stroke, SOHC, single-cylinder");
+        Truck truck = new Truck("Mitsubishi", "L300", 2024, 4);
+        printDetails(car);
+        printDetails(motorcycle);
+        printDetails(truck);
+
+    // DEMO 3: One array holds different Vehicle subclasses
+    System.out.println("\n === 3. Polymorphic Array ===");
+    Vehicle[] vehicles = {
+        new Car("Toyota", "Vios", 2024, 4),
+        new Motorcycle("Yamaha", "NMAX 155", 2024, "4-stroke, SOHC, liquid-cooled, single-cylinder"),
+        new Truck("Volvo", "FM", 2024, 10)
+    };
+
+    for(Vehicle currentVehicle: vehicles){
+        printDetails(currentVehicle);
+        System.out.println();
+    }
+}
+}
